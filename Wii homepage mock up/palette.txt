@@ -1,0 +1,9 @@
+Colour Palette:
+
+From header to the last pixel of the image showcasing two wiis: #fff and #e9ebea
+
+Solid blue used for anything blue: #34beed
+
+Light blue used for one banner just above the 2010 and onwards games: #c1ebf9
+
+Primary font colour: #777777
