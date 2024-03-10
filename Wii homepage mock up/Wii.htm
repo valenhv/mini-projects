@@ -1,0 +1,1100 @@
+<html lang="ja"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Wii</title>
+
+<meta name="Keywords" content="Wii">
+<meta name="Description" content="据置型ゲーム機「Wii（ウィー）」の任天堂公式サイトです。">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/JavaScript">
+<meta http-equiv="imagetoolbar" content="no">
+
+<link rel="stylesheet" type="text/css" href="Wii_files/default.css">
+<link rel="stylesheet" type="text/css" href="Wii_files/index.css">
+<link rel="stylesheet" type="text/css" href="Wii_files/navi.css">
+<link rel="stylesheet" type="text/css" href="Wii_files/search_button.css">
+<link rel="stylesheet" type="text/css" href="Wii_files/search_thickbox.css">
+
+<script type="text/javascript" async="" src="Wii_files/google-analytics_ga.js"></script><script language="JavaScript" type="text/JavaScript" src="Wii_files/jquery.js"></script><script>/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+
+;// CONCATENATED MODULE: ../core/dist/flash-identifiers.js
+const FLASH_MIMETYPE = "application/x-shockwave-flash";
+const FUTURESPLASH_MIMETYPE = "application/futuresplash";
+const FLASH7_AND_8_MIMETYPE = "application/x-shockwave-flash2-preview";
+const FLASH_MOVIE_MIMETYPE = "application/vnd.adobe.flash.movie";
+const FLASH_ACTIVEX_CLASSID = "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000";
+
+;// CONCATENATED MODULE: ../core/dist/plugin-polyfill.js
+
+/**
+ * Replacement object for `MimeTypeArray` that lets us install new fake mime
+ * types.
+ *
+ * Unlike plugins we can at least enumerate mime types in Firefox, so we don't
+ * lose data.
+ *
+ * We also expose a method called `install` which adds a new plugin. This is
+ * used to falsify Flash detection. If the existing `navigator.mimeTypes` has an
+ * `install` method, you should not use `RuffleMimeTypeArray` as some other
+ * plugin emulator is already present.
+ */
+class RuffleMimeTypeArray {
+    constructor(mimeTypes) {
+        this.__mimeTypes = [];
+        this.__namedMimeTypes = {};
+        if (mimeTypes) {
+            for (let i = 0; i < mimeTypes.length; i++) {
+                this.install(mimeTypes[i]);
+            }
+        }
+    }
+    /**
+     * Install a MIME Type into the array.
+     *
+     * @param mimeType The mime type to install
+     */
+    install(mimeType) {
+        const index = this.__mimeTypes.length;
+        this.__mimeTypes.push(mimeType);
+        this.__namedMimeTypes[mimeType.type] = mimeType;
+        this[mimeType.type] = mimeType;
+        this[index] = mimeType;
+    }
+    item(index) {
+        // This behavior is done to emulate a 32-bit uint,
+        // which browsers use.
+        return this.__mimeTypes[index >>> 0];
+    }
+    namedItem(name) {
+        return this.__namedMimeTypes[name];
+    }
+    get length() {
+        return this.__mimeTypes.length;
+    }
+    [Symbol.iterator]() {
+        return this.__mimeTypes[Symbol.iterator]();
+    }
+}
+/**
+ * Equivalent object to `Plugin` that allows us to falsify plugins.
+ */
+class RufflePlugin extends RuffleMimeTypeArray {
+    constructor(name, description, filename) {
+        super();
+        this.name = name;
+        this.description = description;
+        this.filename = filename;
+    }
+}
+/**
+ * Replacement object for `PluginArray` that lets us install new fake plugins.
+ *
+ * This object needs to wrap the native plugin array, since the user might have
+ * actual plugins installed. Firefox doesn't let us enumerate the array, though,
+ * which has some consequences. Namely, we can't actually perfectly wrap the
+ * native plugin array, at least unless there's some secret "unresolved object
+ * property name handler" that I've never known before in JS...
+ *
+ * We can still wrap `namedItem` perfectly at least.
+ *
+ * We also expose a method called `install` which adds a new plugin. This is
+ * used to falsify Flash detection. If the existing `navigator.plugins` has an
+ * `install` method, you should not use `RufflePluginArray` as some other plugin
+ * emulator is already present.
+ */
+class RufflePluginArray {
+    constructor(plugins) {
+        this.__plugins = [];
+        this.__namedPlugins = {};
+        for (let i = 0; i < plugins.length; i++) {
+            this.install(plugins[i]);
+        }
+    }
+    install(plugin) {
+        const index = this.__plugins.length;
+        this.__plugins.push(plugin);
+        this.__namedPlugins[plugin.name] = plugin;
+        this[plugin.name] = plugin;
+        this[index] = plugin;
+    }
+    item(index) {
+        // This behavior is done to emulate a 32-bit uint,
+        // which browsers use. Cloudflare's anti-bot
+        // checks rely on this.
+        return this.__plugins[index >>> 0];
+    }
+    namedItem(name) {
+        return this.__namedPlugins[name];
+    }
+    refresh() {
+        // Nothing to do, we just need to define the method.
+    }
+    [Symbol.iterator]() {
+        return this.__plugins[Symbol.iterator]();
+    }
+    get length() {
+        return this.__plugins.length;
+    }
+}
+/**
+ * A fake plugin designed to trigger Flash detection scripts.
+ */
+const FLASH_PLUGIN = new RufflePlugin("Shockwave Flash", "Shockwave Flash 32.0 r0", "ruffle.js");
+FLASH_PLUGIN.install({
+    type: FUTURESPLASH_MIMETYPE,
+    description: "Shockwave Flash",
+    suffixes: "spl",
+    enabledPlugin: FLASH_PLUGIN,
+});
+FLASH_PLUGIN.install({
+    type: FLASH_MIMETYPE,
+    description: "Shockwave Flash",
+    suffixes: "swf",
+    enabledPlugin: FLASH_PLUGIN,
+});
+FLASH_PLUGIN.install({
+    type: FLASH7_AND_8_MIMETYPE,
+    description: "Shockwave Flash",
+    suffixes: "swf",
+    enabledPlugin: FLASH_PLUGIN,
+});
+FLASH_PLUGIN.install({
+    type: FLASH_MOVIE_MIMETYPE,
+    description: "Shockwave Flash",
+    suffixes: "swf",
+    enabledPlugin: FLASH_PLUGIN,
+});
+/**
+ * Install a fake plugin such that detectors will see it in `navigator.plugins`.
+ *
+ * This function takes care to check if the existing implementation of
+ * `navigator.plugins` already accepts fake plugin entries. If so, it will use
+ * that version of the plugin array. This allows the plugin polyfill to compose
+ * across multiple plugin emulators with the first emulator's polyfill winning.
+ *
+ * @param plugin The plugin to install
+ */
+function installPlugin(plugin) {
+    if (!("install" in navigator.plugins) || !navigator.plugins["install"]) {
+        Object.defineProperty(navigator, "plugins", {
+            value: new RufflePluginArray(navigator.plugins),
+            writable: false,
+        });
+    }
+    const plugins = navigator.plugins;
+    plugins.install(plugin);
+    if (plugin.length > 0 &&
+        (!("install" in navigator.mimeTypes) || !navigator.mimeTypes["install"])) {
+        Object.defineProperty(navigator, "mimeTypes", {
+            value: new RuffleMimeTypeArray(navigator.mimeTypes),
+            writable: false,
+        });
+    }
+    const mimeTypes = navigator.mimeTypes;
+    for (let i = 0; i < plugin.length; i += 1) {
+        mimeTypes.install(plugin[i]);
+    }
+}
+
+;// CONCATENATED MODULE: ./src/plugin-polyfill.ts
+// This file is compiled and then injected into content.ts's compiled form.
+
+installPlugin(FLASH_PLUGIN);
+
+/******/ })()
+;</script><script charset="utf-8" src="Wii_files/ruffle.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="Wii_files/index.js"></script><script language="JavaScript" type="text/JavaScript" src="Wii_files/scroll.js"></script><script language="JavaScript" type="text/JavaScript" src="Wii_files/openwin.js"></script><script language="JavaScript" type="text/JavaScript" src="Wii_files/select_style.js"></script><link rel="STYLESHEET" href="Wii_files/mozilla.css" type="text/css"><script language="JavaScript" type="text/JavaScript" src="Wii_files/jquery_auto.js"></script><script language="JavaScript" type="text/JavaScript" src="Wii_files/jquery_png.js"></script><script language="JavaScript" type="text/JavaScript" src="Wii_files/tooltips.js"></script><script language="JavaScript" type="text/JavaScript" src="Wii_files/jquery.easing.1.3.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="Wii_files/openwin.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="Wii_files/search_thickbox.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="Wii_files/search_window.js"></script>
+<!--[if IE 6]><script src="js/DD_belatedPNG.js"></script><script>DD_belatedPNG.fix('.pngfix');</script><![endif]-->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24515934-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</head>
+
+<body id="wiitop">
+<a name="pagetop"></a>
+<!-- HEADER -->
+<div id="hdr">
+  <div class="nintendo_logo"><a href="https://www.nintendo.co.jp/index.html"><img src="Wii_files/nintendo_logo.gif" width="66" height="17" alt="Nintendo - 任天堂ホームページへ" border="0"></a></div>
+  <div class="wii_logo"><a href="https://www.nintendo.co.jp/wii/index.html"><img src="Wii_files/wii_logo.gif" width="84" height="37" alt="Wii - Wii トップページ" border="0"></a></div>
+</div>
+<div id="hdrMenu">
+    <div class="menu01"><a href="https://www.nintendo.co.jp/index.html"><img src="Wii_files/hdr_home.gif" width="88" height="17" alt="任天堂ホームページ" border="0" class="hover"></a></div>
+    <div class="menu02"><img src="Wii_files/hdr_menu_top_on.gif" width="41" height="17" alt="Wii TOP" border="0"></div>
+    <div class="menu03"><a href="https://www.nintendo.co.jp/wii/console/index.html"><img src="Wii_files/hdr_menu3.gif" width="20" height="17" alt="本体" border="0" class="hover"></a></div>
+    <div class="menu04"><a href="#software"><img src="Wii_files/hdr_menu5.gif" width="52" height="17" alt="ソフトウェア" border="0" class="hover"></a></div>
+    <div class="menu05"><a href="https://www.nintendo.co.jp/wii/controllers/index.html"><img src="Wii_files/hdr_menu4.gif" width="53" height="17" alt="コントローラ" border="0" class="hover"></a></div>
+    <div class="menu06"><a href="https://www.nintendo.co.jp/wii/accessories/index.html"><img src="Wii_files/hdr_menu6.gif" width="40" height="17" alt="周辺機器" border="0" class="hover"></a></div>
+    <div class="menu07"><a href="https://www.nintendo.co.jp/wii/support/index.html"><img src="Wii_files/hdr_menu8.gif" width="37" height="17" alt="サポート" border="0" class="hover"></a></div>
+    <div class="menu08"><a href="https://www.nintendo.co.jp/search/index.html"><img class="hover" border="0" src="Wii_files/hdr_menu_search.gif" width="25" height="25" alt="さがす"></a></div>
+</div>
+
+
+<!-- Main -->
+<div id="btnHardware" style="top: 208px; left: 772px; overflow: hidden; width: 1px; display: block;"></div>
+<div id="mainWrap">
+    <div class="main">
+
+        <div id="mainContent" style="cursor: pointer;">
+            <div id="hoverArea">
+                <a href="https://www.nintendo.co.jp/wii/console/index.html" id="hoverBtn">
+                <img src="Wii_files/main_130130_white.png" width="259" height="263" alt="Wii（シロ）" id="phWhite" class="pngfix">
+                <img src="Wii_files/main_130130_black.png" width="265" height="263" alt="Wii（クロ）" id="phBlack" class="pngfix">
+                <img src="Wii_files/main_140401_title.png" width="179" height="113" alt="Wii 希望小売価格 各19,048円（税別）" class="logo pngfix">
+                </a>
+            </div>
+
+        </div>
+
+
+        <a href="https://www.nintendo.co.jp/wii/console/index.html"><img src="Wii_files/mainBtnConsole.png" width="127" height="49" alt="Wii本体" class="mainBtnConsole hover"></a>
+        <a href="https://www.nintendo.co.jp/wii/accessories/index.html"><img src="Wii_files/mainBtnAccessory.png" width="128" height="49" alt="周辺機器" class="mainBtnAccessory hover"></a>
+        <a href="https://www.nintendo.co.jp/wii/shopping_ch/wii_points/index.html"><img src="Wii_files/mainBtnPoint.png" width="162" height="49" alt="Wiiポイント（ニンテンドーポイント）" class="mainBtnPoint hover"></a>
+        <a href="https://www.nintendo.co.jp/wii/support/index.html"><img src="Wii_files/mainBtnSupport.png" width="182" height="49" alt="サポート情報（Q&amp;A、インターネット接続方法）" class="mainBtnSupport hover"></a>
+
+    </div>
+
+
+</div>
+
+<!-- Info -->
+<div id="mainbtm">
+
+    <div class="info">
+
+        <div><img src="Wii_files/ttl_info.gif" alt="Information お知らせ" width="520" height="22"></div>
+
+        <ul>
+
+            <li><div class="arrow"><a href="https://www.nintendo.co.jp/support/information/2017/0929.html">「Wiiショッピングチャンネル」終了のお知らせ</a></div></li>
+
+            <li><div class="arrow"><a href="https://www.nintendo.co.jp/support/information/2014/0227.html">「ニンテンドーDS」および「Wii」ソフトの「ニンテンドーWi-Fiコネクション」サービス終了のお知らせ</a></div></li>
+
+            <li><div class="arrow"><a href="https://www.nintendo.co.jp/support/information/2013/0412.html">「Wii」ネットワークサービス　一部終了のお知らせ</a></div></li>
+
+            <li><div class="arrow"><a href="https://www.nintendo.co.jp/wii/campaign/notice.html">手助けポイントキャンペーン終了のお知らせ</a></div></li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="linkRight">
+        <div class="link_mailnews"><a href="https://www.nintendo.co.jp/wii/mailnews/index.html"><img src="Wii_files/link_mailnews.gif" alt="WiiやDSの最新情報配信について" width="229" height="21" border="0" class="hover"></a> <a href="https://www.nintendo.co.jp/wii/jacket/index.html"><img src="Wii_files/link_jacket.gif" alt="「Wiiリモコンジャケット」についてのお知らせ" width="229" height="21" border="0" class="hover"></a> <a href="https://www.nintendo.co.jp/wii/news/strap.html"><img src="Wii_files/link_strap.gif" alt="「Wiiリモコン」のストラップについてのお願い" width="229" height="21" border="0" class="hover"></a></div>
+
+        <div class="bnr_internet"><a href="https://www.nintendo.co.jp/wii/support/howto-connect/index.html"><img src="Wii_files/bnr_internet.gif" alt="Wiiをインターネットにつなぐには" width="229" height="47" border="0" class="hover"></a></div>
+
+
+    </div>
+
+</div>
+
+
+<!-- 対応ソフトウェア -->
+<div style="margin-top: 10px;"><a name="software" id="software"><img src="Wii_files/software.gif" width="768" height="30" alt="対応ソフトウェア"></a></div>
+
+
+<div id="softwareMenu">
+
+    <div class="popup_channel"><img src="Wii_files/popup_channel.png" alt="家庭のテレビにチャンネルが増える。
+『みんなのニンテンドーチャンネル』や『インターネットチャンネル』など、さまざまなチャンネルをWiiに追加することができます。" width="244" height="160"></div>
+    <div class="popup_ware"><img src="Wii_files/popup_ware.png" alt="新作Wii専用ソフトをダウンロード。
+『Wiiショッピングチャンネル』でダウンロード購入するWii専用ソフト。リビングにいながら、お店で販売されていない新作ソフトが楽しめます。" width="244" height="160"></div>
+
+    <div class="popup_vc"><img src="Wii_files/popup_vc.png" alt="懐かしのゲームソフトをダウンロード。
+ファミコンやスーパーファミコンなど、いろんなゲーム機のソフトを『Wiiショッピングチャンネル』から購入・ダウンロードして遊ぶことができます。" width="244" height="160"></div>
+
+    <div class="btn_channel"><a href="https://www.nintendo.co.jp/wii/features/wii_channel.html" id="popup_channel"><img src="Wii_files/btn_channel.gif" alt="Wiiチャンネル - チャンネル一覧" width="255" height="59" border="0" class="hover"></a></div>
+
+    <div class="btn_ware"><a href="https://www.nintendo.co.jp/wii/wiiware/index.html" id="popup_ware"><img src="Wii_files/btn_ware.gif" alt="Wiiウェア - タイトルラインナップ" width="255" height="59" border="0" class="hover"></a></div>
+
+    <div class="btn_vc"><a href="https://www.nintendo.co.jp/wii/vc/index.html" id="popup_vc"><img src="Wii_files/btn_vc.gif" alt="バーチャルコンソール - タイトルラインナップ" width="255" height="59" border="0" class="hover"></a></div>
+
+</div>
+
+<!-- 任天堂のソフト -->
+<a name="nintendo_soft"></a>
+
+<div id="nSoftList">
+    <div><img src="Wii_files/ttl_n_software.gif" alt="Wii専用ディスク：任天堂ソフト" width="765" height="77"></div>
+
+
+    <div class="soft_n" style="margin-top: 0px;">
+            <!-- JUST DANCE Wii 2 -->
+
+        <div class="softPkgArea">
+
+            <a href="https://www.nintendo.co.jp/wii/sjdj/index.html"><img src="Wii_files/sjdj.jpg" width="90" height="120" alt="JUST DANCE Wii 2" border="0"></a>
+        </div>
+        <div class="softInfoArea">
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sjdj/index.html"><span class="genre">ダンス</span><br>
+
+            <span class="title">JUST DANCE Wii 2</span></a><br></div>
+
+            <div class="copy">マネするだけでダンスが楽しめる。<br>新たな35曲をみんなで踊り尽くす。</div>
+
+            <div class="data tx10">12.7.26発売 5,524円（税別）</div>
+
+            <div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sjdj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- /JUST DANCE Wii 2 -->
+
+        <!-- カービィ -->
+
+        <div class="softPkgArea">
+
+            <a href="https://www.nintendo.co.jp/wii/s72j/index.html"><img src="Wii_files/s72j.jpg" width="90" height="120" alt="星のカービィ 20周年スペシャルコレクション" border="0"></a>
+        </div>
+        <div class="softInfoArea">
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/s72j/index.html"><span class="genre">アクション</span><br>
+
+            <span class="title">星のカービィ<br>20周年スペシャルコレクション</span></a><br></div>
+
+            <div class="copy">20年の歴史が詰まった特別パッケージ</div>
+
+            <div class="data tx10">12.7.19発売 3,619円（税別）</div>
+
+            <div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/s72j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- /カービィ -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- 零　～眞紅の蝶～ -->
+
+        <div class="softPkgArea">
+
+            <a href="https://www.nintendo.co.jp/wii/sl2j/index.html"><img src="Wii_files/sl2j.jpg" width="90" height="120" alt="零 ～眞紅の蝶～" border="0"></a>
+        </div>
+        <div class="softInfoArea">
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sl2j/index.html"><span class="genre">ホラーアドベンチャー</span><br>
+
+            <span class="title">零 ～眞紅の蝶～</span></a><br></div>
+
+            <div class="copy">それは、<br>決して見てはいけない禁断の儀式…</div>
+
+            <div class="data tx10">12.6.28発売 6,476円（税別）</div>
+
+            <div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sl2j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / 零　～眞紅の蝶～ -->
+
+        <!-- マリオパーティ９ -->
+
+        <div class="softPkgArea">
+
+            <a href="https://www.nintendo.co.jp/wii/ssqj/index.html"><img src="Wii_files/ssqj.jpg" width="90" height="120" alt="マリオパーティ９" border="0"></a>
+        </div>
+        <div class="softInfoArea">
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/ssqj/index.html"><span class="genre">パーティゲーム</span><br>
+
+            <span class="title">マリオパーティ９</span></a><br></div>
+
+            <div class="copy">マリオたちとすごろくを冒険！<br>80種類の新作ミニゲームを<br>みんなでプレイ。</div>
+
+            <div class="data tx10">12.4.26発売 5,524円（税別）</div>
+
+            <div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/ssqj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / マリオパーティ９ -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- キキトリック -->
+
+        <div class="softPkgArea">
+
+            <a href="https://www.nintendo.co.jp/wii/st3j/index.html"><img src="Wii_files/st3j.jpg" width="90" height="120" alt="キキトリック" border="0"></a>
+        </div>
+        <div class="softInfoArea">
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/st3j/index.html"><span class="genre">ききとりゲーム</span><br>
+
+            <span class="title">キキトリック</span></a><br></div>
+
+            <div class="copy">きくほど、なるほど、聞き取れる。<br>
+
+            みんなで楽しむ“ソラミミ”感覚ゲーム。</div>
+
+            <div class="data tx10">12.1.19発売 5,524円（税別）</div>
+
+            <div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/st3j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / キキトリック -->
+
+        <!-- マリオ&amp;ソニック　AT　ロンドンオリンピック&trade; -->
+
+        <div class="softPkgArea">
+
+            <a href="https://www.nintendo.co.jp/wii/siij/index.html"><img src="Wii_files/siij.jpg" width="90" height="120" alt="マリオ&amp;ソニック AT ロンドンオリンピック™" border="0"></a>
+
+        </div>
+        <div class="softInfoArea">
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/siij/index.html"><span class="genre">スポーツ</span><br>
+
+            <span class="title">マリオ&amp;ソニック AT<br>ロンドンオリンピック™</span></a><br></div>
+
+            <div class="copy">マリオとソニックが<br>
+
+            オリンピックを舞台に競演</div>
+
+            <div class="data tx10">11.12.8発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/siij/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / マリオ&amp;ソニック　AT　ロンドンオリンピック&trade; -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- ゼルダの伝説 スカイウォードソード -->
+
+        <div class="softPkgArea">
+
+            <a href="https://www.nintendo.co.jp/wii/souj/index.html"><img src="Wii_files/souj.jpg" width="90" height="120" alt="ゼルダの伝説 スカイウォードソード" border="0"></a>
+        </div>
+
+        <div class="softInfoArea">
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/souj/index.html"><span class="genre">アクションアドベンチャー</span><br>
+
+            <span class="title">ゼルダの伝説 スカイウォードソード</span></a><br></div>
+
+            <div class="copy">濃密ゼルダ、来る。</div>
+
+            <div class="data tx10">11.11.23発売 6,476円（税別）</div>
+
+            <div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/souj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / ゼルダの伝説 スカイウォードソード -->
+
+
+        <!-- ポケパーク2 ～Beyond the World～ -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/s2lj/index.html"><img src="Wii_files/s2lj.jpg" width="90" height="120" alt="ポケパーク2 ～Beyond the World～" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/s2lj/index.html"><span class="genre">アクションアドベンチャー</span><br>
+
+            <span class="title">ポケパーク2 ～Beyond the World～</span></a><br></div>
+
+            <div class="copy">ポケパークとウィッシュパーク<br>ふたつの世界を大冒険！</div>
+
+            <div class="data tx10">11.11.12発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/s2lj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / ポケパーク2 ～Beyond the World～ -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- 星のカービィ Wii -->
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/sukj/index.html"><img src="Wii_files/sukj.jpg" width="90" height="120" alt="星のカービィ Wii" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sukj/index.html"><span class="genre">アクション</span><br>
+
+            <span class="title">星のカービィ Wii</span></a><br></div>
+
+            <div class="copy">能力全開。<br>ひとりで、みんなで、遊べるカービィ。</div>
+
+            <div class="data tx10">11.10.27発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sukj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / 星のカービィ Wii -->
+
+        <!-- JUST DANCE Wii -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/sd2j/index.html"><img src="Wii_files/sd2j.jpg" width="90" height="120" alt="JUST DANCE Wii" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sd2j/index.html"><span class="genre">ダンス</span><br>
+
+            <span class="title">JUST DANCE Wii</span></a><br></div>
+
+            <div class="copy">マネするだけで、ダンスが楽しめる！</div>
+
+            <div class="data tx10">11.10.13発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sd2j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / JUST DANCE Wii -->
+
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- ディズニー エピックミッキー ～ミッキーマウスと魔法の筆～ -->
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/semj/index.html"><img src="Wii_files/semj.jpg" width="90" height="120" alt="ディズニー エピックミッキー ～ミッキーマウスと魔法の筆～" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/semj/index.html"><span class="genre">アクションアドベンチャー</span><br>
+
+            <span class="title">ディズニー エピックミッキー </span><br>
+
+                <span style="font-weight: bold;" class="tx10">～ミッキーマウスと魔法の筆～</span></a></div>
+
+            <div class="copy">ミッキーマウスが、<br>魔法の筆で世界を描きかえる。</div>
+
+            <div class="data tx10">11.8.4発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/semj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / ディズニー エピックミッキー ～ミッキーマウスと魔法の筆～ -->
+
+
+        <!-- みんなのリズム天国 -->
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/somj/index.html"><img src="Wii_files/somj.jpg" width="90" height="120" alt="みんなのリズム天国" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/somj/index.html"><span class="genre">ノリ感ゲーム♪</span><br>
+
+            <span class="title">みんなのリズム天国</span></a></div>
+
+            <div class="copy">リズムにノッて、ボタン押すだけ♪</div>
+
+            <div class="data tx10">11.7.21発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/somj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / みんなのリズム天国 -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- Wiiリモコンプラス バラエティ -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/sc8j/index.html"><img src="Wii_files/sc8j.jpg" width="90" height="120" alt="Wiiリモコンプラス バラエティ" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sc8j/index.html"><span class="genre">パーティゲーム</span><br>
+
+                <span class="title">Wiiリモコンプラス バラエティ</span></a></div>
+
+            <div class="copy">Wiiリモコンプラスで、<br>広がる遊びのバラエティ。</div>
+
+            <div class="data tx10">11.7.7発売 4,571円（税別）<br>Wiiリモコンプラス バラエティパック<br>（『Wiiリモコンプラス バラエティ』とWiiリモコンプラス（アカ）1個のセットです）</div>
+
+            <div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sc8j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / Wiiリモコンプラス バラエティ -->
+
+        <!-- ゴールデンアイ 007 -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/sjbj/index.html"><img src="Wii_files/sjbj.jpg" width="90" height="120" alt="ゴールデンアイ 007™" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sjbj/index.html"><span class="genre">スパイアクション</span><br>
+
+                <span class="title">ゴールデンアイ 007™</span></a></div>
+
+            <div class="copy">やるか、やられるか。<br>集まれば、緊張と興奮の銃撃戦。</div>
+
+            <div class="data tx10">11.6.30発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sjbj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / ゴールデンアイ 007 -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- パンドラの塔　君のもとへ帰るまで -->
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/sx3j/index.html"><img src="Wii_files/sx3j.jpg" width="90" height="120" alt="パンドラの塔　君のもとへ帰るまで" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sx3j/index.html"><span class="genre">アクションRPG</span><br>
+
+                <span class="title">パンドラの塔</span><br>
+
+                <span style="font-weight: bold;" class="tx10">君のもとへ帰るまで</span></a></div>
+
+            <div class="copy">美しき少女を蝕む獣の呪い…<br>13の塔に棲む獣の肉が、彼女を救う</div>
+
+            <div class="data tx10">11.5.26発売 6,476円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sx3j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / パンドラの塔　君のもとへ帰るまで -->
+
+
+        <!-- THE LAST STORY（ラストストーリー） -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/slsj/index.html"><img src="Wii_files/slsj.jpg" width="90" height="120" alt="THE LAST STORY（ラストストーリー）" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/slsj/index.html"><span class="genre">RPG</span><br>
+
+                <span class="title">THE LAST STORY</span><br>
+
+                <span style="font-weight: bold;" class="tx10">（ラストストーリー）</span></a></div>
+
+            <div class="copy">騎士に憧れ、<br>戦い続ける傭兵たちの物語。</div>
+
+            <div class="data tx10">11.1.27発売 6,476円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/slsj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / THE LAST STORY（ラストストーリー） -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- ドンキーコング リターンズ -->
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/sf8j/index.html"><img src="Wii_files/sf8j.jpg" width="90" height="120" alt="ドンキーコング リターンズ" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sf8j/index.html"><span class="genre">アクション</span><br>
+
+                <span class="title">ドンキーコング リターンズ</span></a></div>
+
+            <div class="copy">ドンキーコングの<br>横スクロールアクション、再び。</div>
+
+            <div class="data tx10">10.12.9発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sf8j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / ドンキーコング リターンズ -->
+
+
+        <!-- MARIO SPORTS MIX -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/rmkj/index.html"><img src="Wii_files/rmkj.jpg" width="90" height="120" alt="MARIO SPORTS MIX" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/rmkj/index.html"><span class="genre">スポーツアクション</span><br>
+
+                <span class="title">MARIO SPORTS MIX</span></a></div>
+
+            <div class="copy">マリオとハチャメチャ！スポーツ対戦。</div>
+
+            <div class="data tx10">10.11.25発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/rmkj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- / MARIO SPORTS MIX -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- たたいて弾む　スーパースマッシュボール・プラス　Wiiリモコンプラス付き -->
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/r22j/index.html"><img src="Wii_files/r22j.jpg" width="90" height="120" alt="たたいて弾むスーパースマッシュボール・プラス　Wiiリモコンプラス付き" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/r22j/index.html"><span class="genre">アクション</span><br>
+
+                <span class="title">たたいて弾む<br>スーパースマッシュボール・プラス</span><br>
+
+                <span style="font-weight: bold;" class="tx10">Wiiリモコンプラス付き</span></a></div>
+
+            <div class="copy">Wiiリモコンプラスを振って<br>スマッシュアクション</div>
+
+            <div class="data tx10">10.11.18発売 4,571円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/r22j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!--  たたいて弾む　スーパースマッシュボール・プラス　Wiiリモコンプラス付き -->
+
+
+        <!-- Wii Sports Resort　Wiiリモコンプラス パック -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/rztj/index.html"><img src="Wii_files/rztj_p.jpg" width="90" height="120" alt="Wii Sports Resort　Wiiリモコンプラス パック" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/rztj/index.html"><span class="genre">スポーツ</span><br>
+
+                <span class="title">Wii Sports Resort<br>Wiiリモコンプラス パック</span></a></div>
+
+            <div class="copy">Wiiリモコンプラスがセットに。</div>
+
+            <div class="data tx10">10.11.11発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/rztj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / Wii Sports Resort　Wiiリモコンプラス パック -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- スーパーマリオコレクション -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/svmj/index.html"><img src="Wii_files/svmj.jpg" width="90" height="120" alt="スーパーマリオコレクション スペシャルパック" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/svmj/index.html"><span class="genre">アクション</span><br>
+
+                <span class="title">スーパーマリオコレクション<br>スペシャルパック</span></a></div>
+
+            <div class="copy">『スーパーマリオコレクション』をWiiで復刻。<br>25年の歴史が詰まった、特別パッケージ。</div>
+
+            <div class="data tx10">10.10.21発売 2,381円（税別）</div>
+
+            <div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/svmj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / スーパーマリオコレクション -->
+
+
+        <!-- 毛糸のカービィ -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/rk5j/index.html"><img src="Wii_files/rk5j.jpg" width="90" height="120" alt="毛糸のカービィ" border="0"></a></div>
+
+        <div class="softInfoArea">
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/rk5j/index.html"><span class="genre">アクション</span><br>
+
+                <span class="title">毛糸のカービィ</span></a></div>
+
+            <div class="copy">毛糸の世界に迷い込んだカービィ。<br>毛糸の姿で大冒険。</div>
+
+            <div class="data tx10">10.10.14発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/rk5j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / 毛糸のカービィ -->
+
+        </div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- METROID　Other M -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/r3oj/index.html"><img src="Wii_files/r3oj.jpg" width="90" height="120" alt="METROID　Other M" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/r3oj/index.html"><span class="genre">アクション</span><br>
+
+                <span class="title">METROID　Other M</span></a></div>
+
+            <div class="copy">最新技術を使ったファミコンゲーム</div>
+
+            <div class="data tx10">10.9.2発売 6,476円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/r3oj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+        </div>
+
+        <!-- / METROID　Other M -->
+
+
+        <!-- Wii Party -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/supj/index.html"><img src="Wii_files/supj.jpg" width="90" height="120" alt="Wii Party" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/supj/index.html"><span class="genre">パーティゲーム</span><br>
+
+                <span class="title">Wii Party</span></a></div>
+
+            <div class="copy">友だち、家族、みんなのMiiが主役の<br>新体験パーティゲーム<br>
+
+            </div>
+
+            <div class="data tx10">10.7.8発売 4,571円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/supj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- / Wii Party -->
+
+</div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- Xenoblade -->
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/sx4j/index.html"><img src="Wii_files/sx4j.jpg" width="90" height="120" alt="ゼノブレイド" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sx4j/index.html"><span class="genre">RPG</span><br>
+
+                <span class="title">ゼノブレイド</span></a></div>
+
+            <div class="copy">―巨神と機神―<br>二柱の神の骸を舞台に、<br>壮大な物語が始まる……</div>
+
+            <div class="data tx10">10.6.10発売 6,476円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sx4j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- /Xenoblade -->
+
+        <!-- マリオギャラクシー 2 -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/sb4j/index.html"><img src="Wii_files/sb4j.jpg" width="90" height="120" alt="スーパーマリオギャラクシー 2" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/sb4j/index.html"><span class="genre">3Dアクション</span><br>
+
+                <span class="title">スーパーマリオギャラクシー 2</span></a></div>
+
+            <div class="copy">マリオ、宇宙に飛び立つ。<br>ヨッシーと一緒に大冒険。</div>
+
+            <div class="data tx10">10.5.27発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/sb4j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- /マリオギャラクシー2 -->
+
+</div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- 安藤ケンサク -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/rk3j/index.html"><img src="Wii_files/rk3j.jpg" width="90" height="120" alt="安藤ケンサク" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/rk3j/index.html"><span class="genre">検索ことばあそび</span><br>
+
+                <span class="title">安藤ケンサク</span></a></div>
+
+            <div class="copy">インターネット検索であそぶ。<br>安藤ケンサクと学ぶ。</div>
+
+            <div class="data tx10">10.4.29発売 4,571円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/rk3j/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- /安藤ケンサク -->
+
+        <!-- 斬撃のREGINLEIV -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/rznj/index.html"><img src="Wii_files/rznj.jpg" width="90" height="120" alt="斬撃のREGINLEIV" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/rznj/index.html"><span class="genre">斬撃アクション</span><br>
+
+                <span class="title">斬撃のREGINLEIV</span></a></div>
+
+            <div class="copy">巨大な敵を斬って、斬って、斬り倒す。</div>
+
+            <div class="data tx10">10.2.11発売 6,476円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/rznj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- /斬撃のREGINLEIV -->
+
+</div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+        <!-- ＮＨＫ紅白クイズ合戦 -->
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/rqij/index.html"><img src="Wii_files/rqij.jpg" width="90" height="120" alt="ＮＨＫ紅白クイズ合戦" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/rqij/index.html"><span class="genre">ファミリークイズ</span><br>
+
+                <span class="title">ＮＨＫ紅白クイズ合戦</span></a></div>
+
+            <div class="copy">ＮＨＫのクイズ番組にみんなで参加</div>
+
+            <div class="data tx10">09.12.17発売 4,571円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/rqij/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+
+        <!-- /ＮＨＫ紅白クイズ合戦 -->
+
+        <!-- ポケパークＷｉｉ ～ピカチュウの大冒険～ -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/r8aj/index.html"><img src="Wii_files/r8aj.jpg" width="90" height="120" alt="ポケパークＷｉｉ ～ピカチュウの大冒険～" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/r8aj/index.html"><span class="genre">アクションアドベンチャー</span><br>
+
+                <span class="title">ポケパークＷｉｉ<br><span style="font-weight: bold;" class="tx10">～ピカチュウの大冒険～</span></span></a></div>
+
+            <div class="copy">ポケモンたちと一緒に、<br>アトラクションに挑戦しながら、<br>ポケパークを駆け巡る</div>
+
+            <div class="data tx10">09.12.5発売 4,571円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/r8aj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- /ポケパークＷｉｉ ～ピカチュウの大冒険～ -->
+
+</div>
+    <div class="btmLineDot2"></div>
+
+
+    <div class="soft_n">
+
+
+        <!-- New スーパーマリオブラザーズ Wii -->
+
+        <div class="softPkgArea"><a href="https://www.nintendo.co.jp/wii/smnj/index.html"><img src="Wii_files/smnj.jpg" width="90" height="120" alt="New スーパーマリオブラザーズ Wii" border="0"></a></div>
+
+        <div class="softInfoArea">
+
+            <div class="titleArea"><a href="https://www.nintendo.co.jp/wii/smnj/index.html"><span class="genre">アクション</span><br>
+
+                <span class="title">New スーパーマリオブラザーズ Wii</span></a></div>
+
+            <div class="copy">ひとりでも、みんなでも、<br>だれでもできるWiiのマリオ</div>
+
+            <div class="data tx10">09.12.3発売 5,524円（税別）
+
+            </div><div class="tx10 detail"><a href="https://www.nintendo.co.jp/wii/smnj/index.html">もっと詳しく</a><img src="Wii_files/arrow.gif" width="9" height="9" alt=""></div>
+
+        </div>
+        <!-- /New スーパーマリオブラザーズ Wii -->
+
+    </div>
+
+    <div class="btmLineDot1"></div>
+
+    <div class="oldList">
+
+        <a href="https://www.nintendo.co.jp/wii/softlist/n2009.html"><img src="Wii_files/btn_n_2009.gif" alt="2009年発売ソフト" width="185" height="31" border="0" class="hover"></a>
+        <a href="https://www.nintendo.co.jp/wii/softlist/n2008.html"><img src="Wii_files/btn_n_2008.gif" alt="2008年発売ソフト" width="185" height="31" border="0" class="hover"></a>
+        <a href="https://www.nintendo.co.jp/wii/softlist/n2007_2006.html"><img src="Wii_files/btn_n_2007.gif" alt="2007・2006年発売ソフト" width="185" height="31" border="0" class="hover"></a>
+    </div>
+
+    <div class="cero"><a href="https://www.nintendo.co.jp/cero/index.html" target="_blank"><img src="Wii_files/btn_cero.gif" alt="ゲームソフトパッケージに記載の対象年齢マークについて" width="305" height="16" border="0" class="hover"></a></div>
+
+</div>
+
+
+<!-- FOOTER -->
+<div id="footer">
+    <ul>
+        <li><img src="Wii_files/fnav_top_ov.gif" alt="Wii Top" height="21" width="85"></li>
+        <li><a href="https://www.nintendo.co.jp/wii/console/index.html"><img src="Wii_files/fnav_console.gif" alt="本体" height="21" width="57"></a></li>
+        <li><a href="https://www.nintendo.co.jp/wii/index.html#software"><img src="Wii_files/fnav_software.gif" alt="ソフトウェア" class="hover" height="21" width="98"></a></li>
+        <li><a href="https://www.nintendo.co.jp/wii/controllers/index.html"><img src="Wii_files/fnav_controllers.gif" alt="コントローラ" class="hover" height="21" width="100"></a></li>
+        <li><a href="https://www.nintendo.co.jp/wii/accessories/index.html"><img src="Wii_files/fnav_accessories.gif" alt="周辺機器" class="hover" height="21" width="81"></a></li>
+        <li><a href="https://www.nintendo.co.jp/wii/support/index.html"><img src="Wii_files/fnav_support.gif" alt="サポート" class="hover" height="21" width="74"></a></li>
+    </ul>
+    <p class="pagetop"><a href="#pagetop"><img src="Wii_files/btn_pagetop.gif" alt="このページの上へ" class="hover" height="21" width="112"></a></p></div>
+<!-- bdr -->
+<div id="ftr_bdr">
+    <div id="pnav_container">
+        <p class="copyright"><img src="Wii_files/copy_nintendo.gif" alt="" height="25" width="92"></p>
+        <ul id="pnav">
+            <li><a href="https://www.nintendo.co.jp/index.html"><img src="Wii_files/btn_footer_nintendo.gif" alt="任天堂トップ" class="hover" height="25" width="89"></a></li>
+            <li><a href="https://www.nintendo.co.jp/wiiu/index.html"><img src="Wii_files/btn_footer_wiiu.gif" alt="Wii U" class="hover" height="25" width="89"></a></li>
+            <li><a href="https://www.nintendo.co.jp/wii/index.html"><img src="Wii_files/btn_footer_wii.gif" alt="Wii" height="25" width="89"></a></li>
+            <li><a href="https://www.nintendo.co.jp/3ds/index.html"><img src="Wii_files/btn_footer_3ds.gif" alt="ニンテンドー3DS" class="hover" height="25" width="89"></a></li>
+            <li class="lastchild"><a href="https://www.nintendo.co.jp/ds/index.html"><img src="Wii_files/btn_footer_ds.gif" alt="ニンテンドーDS" class="hover" height="25" width="89"></a></li>
+        </ul>
+    </div>
+</div>
+<!-- bdr -->
+
+
+
+<script src="Wii_files/app.js" type="text/javascript"></script></body></html>

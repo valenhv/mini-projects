@@ -1,0 +1,710 @@
+@charset "Shift_JIS";
+
+/*-------------------------------------------------
+会社情報: corporate/
+ニュースリリース: release/
+CSRレポート: csr/
+採用情報: jobs/
+IR情報: ir/
+--------------------------------------------------*/
+#header {
+	position:relative;
+}
+#header ul.header_navi{
+	width:199px;
+	height:27px;
+	position:absolute;
+	top:5px;
+	right:0px;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#header ul.header_navi li {
+	float:left;
+	margin:0 11px 0 0;
+	padding:0;
+}
+/*-------------------------------------------------
+最新情報: news/
+カレンダー: schedule/
+--------------------------------------------------*/
+#mainArea ul.header_navi {
+	width:315px;
+	height:30px;
+	position:absolute;
+	top:0;
+	right:0px;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#mainArea ul.header_navi li{
+	float:left;
+	margin:0;
+	padding:0;
+}
+#mainArea div.right ul.header_navi li{
+	padding:0;
+}
+
+#mainArea ul.header_navi li#btn_glHdrParents img {
+	position: absolute;
+	top: 13px;
+}
+#mainArea ul.header_navi li#btn_glHdrNintendoTop img {
+	position: absolute;
+	top: 13px;
+	left: 126px;
+}
+#mainArea ul.header_navi li#btn_glHdrSearch img {
+	position: absolute;
+	top: 7px;
+	left: 225px;
+}
+
+/*-------------------------------------------------
+サポート: support/
+イベント情報その他: etc/, event/
+--------------------------------------------------*/
+#mainArea ul#header_navi {
+	width:310px;
+	height:30px;
+	position:absolute;
+	top:0;
+	right:0px;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#mainArea ul#header_navi li{
+	float:left;
+	margin:0;
+	padding:0;
+}
+#mainArea div.right ul#header_navi li{
+	padding:0;
+}
+#mainArea ul#header_navi li#btn_glHdrParents img {
+	position: absolute;
+	top: 13px;
+}
+#mainArea ul#header_navi li#btn_glHdrNintendoTop img {
+	position: absolute;
+	top: 13px;
+	left: 126px;
+}
+#mainArea ul#header_navi li#btn_glHdrSearch img {
+	position: absolute;
+	top: 7px;
+	left: 225px;		
+}
+
+/*-------------------------------------------------
+任天堂ホームページについて: about_hp.html
+サイトマップ: sitemap/
+保護者のみなさまへ: parents/
+--------------------------------------------------*/
+#anzen #wrapper #header div,
+#sitemap #wrapper #header div,
+#parents #wrapper #header div {
+	height:78px;
+}
+#anzen #wrapper #header div h1,
+#sitemap #wrapper #header div h1,
+#parents #wrapper #header div h1 {
+    padding-top: 6px;
+}
+#anzen #wrapper #aboutHeaderSearch,
+#sitemap #wrapper #aboutHeaderSearch,
+#parents #wrapper #aboutHeaderSearch {
+	width:960px;
+	height:27px;
+	margin:5px auto 0;
+	position:relative;
+}
+#aboutHeaderSearch ul.header_navi {
+	width:305px;
+	height:27px;
+	position:absolute;
+	top:0px;
+	right:0px;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#aboutHeaderSearch ul.header_navi li {
+	float:left;
+	margin:0;
+	padding:0x;
+}
+#aboutHeaderSearch ul.header_navi li#btn_glHdrParents img {
+	position: absolute;
+	top: 7px;
+}
+#aboutHeaderSearch ul.header_navi li#btn_glHdrNintendoTop img {
+	position: absolute;
+	top: 7px;
+	left: 126px;
+}
+#aboutHeaderSearch ul.header_navi li#btn_glHdrSearch img {
+	position: absolute;
+	top: 1px;
+	left: 225px;		
+}
+
+
+/* form テキストカラー(デフォルト)共通 */
+#inputSearch {
+	color:inherit;
+}
+#inputSearch.disable {
+	color:#aaaaaa;
+}
+
+/* Wii index */
+#hdrMenu .menu10 {
+	width:25px;
+	margin:-7px 0 0 0;
+	float:left;
+}
+
+/* searchBox Wii index */
+div.searchAreaWii {
+	width:768px;
+	margin:16px auto 14px;
+}
+div.searchAreaWii p {
+	margin:0;
+	padding:0;
+}
+div.searchAreaWii #inputSearch.checkMsg {
+	color:#34BEED;
+}
+div.searchAreaWii div#searchBox {
+	padding:8px 20px 15px 25px;
+	background-image:url(../wii/img_cmn/bg_search_bottom.gif);
+	background-position:bottom left;
+}
+div.searchAreaWii div#searchBox form {
+	margin:0;
+	padding:0;
+}
+div.searchAreaWii div#searchBox .searchTtl {
+	width:195px;
+	padding:8px 0 0 0;
+	margin:0;
+	vertical-align:top;
+	text-align:left;
+}
+div.searchAreaWii div#searchBox ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+div.searchAreaWii div#searchBox ul#searchCheck {
+	padding:0 0 0 1px;
+}
+div.searchAreaWii div#searchBox ul li {
+	float:left;
+	margin:0;
+	padding:0;
+}
+div.searchAreaWii div#searchBox #textArea input {
+	background-image:url(../wii/img_cmn/input_bg_textarea.jpg);
+	background-position:left center;
+	background-repeat:no-repeat;
+	width:390px;
+	_height:38px;
+	margin:0px;
+	padding-left:15px;
+	border: medium none;
+    display: block;
+}
+div.searchAreaWii div#searchBox #textArea input.focus {
+	background-image:url(../wii/img_cmn/input_bg_textarea_on.jpg);
+}
+div.searchAreaWii div#searchBox #textArea input#inputSearch {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-bottom: 12px\9; /* IE8 and below */
+	*padding-bottom : 12px; /* IE7 and below */
+	_padding-bottom : 12px; /* IE6 */	
+}
+div.searchAreaWii div#searchBox ul#searchCheck li {
+	padding:0 14px 0 0;
+}
+div.searchAreaWii div#searchBox ul#searchCheck li img {
+	margin:0 0 1px 0;
+}
+div.searchAreaWii div#searchBox ul#searchCheck li#btnDetail {
+	padding:0 0 0 23px;
+}
+
+/* Wii Ware */
+#contents h2.whats {
+    height: 150px;
+    text-align: center;
+    width: 740px;
+	margin:0 auto;
+}
+#contents .gallery {
+    clear: both;
+    padding: 0 0 41px;
+    width: 768px;
+}
+#contents .gallery .new_release {
+    width: 768px;
+}
+#contents .gallery .nintendo_soft {
+    width: 768px;
+}
+#contents .gallery .list {
+    padding: 12px 0 0 560px;
+}
+#contents .gallery .block {
+    margin-left:13px;
+}
+
+/* searchBox Wii Ware */
+div.searchAreaWiiWare {
+	width:768px;
+	margin:10px 0 25px;
+}
+div.searchAreaWiiWare #inputSearch.checkMsg {
+	color:#34BEED;
+}
+div.searchAreaWiiWare div#searchBox {
+	padding:8px 20px 15px 25px;
+	background-image:url(../wii/img_cmn/bg_search_bottom.gif);
+	background-position:bottom left;
+}
+div.searchAreaWiiWare div#searchBox .searchTtl {
+	width:195px;
+	padding:8px 0 0 0;
+	vertical-align:top;
+	text-align:left;
+}
+div.searchAreaWiiWare div#searchBox ul#searchCheck {
+	padding:0 0 0 1px;
+}
+div.searchAreaWiiWare div#searchBox ul li {
+	float:left;
+}
+div.searchAreaWiiWare div#searchBox #textArea input {
+	background-image:url(../wii/img_cmn/input_bg_textarea.jpg);
+	background-position:left center;
+	background-repeat:no-repeat;
+	width:390px;
+	_height:38px;
+	padding-left:15px;
+	border: medium none;
+    display: block;
+}
+div.searchAreaWiiWare div#searchBox #textArea input.focus {
+	background-image:url(../wii/img_cmn/input_bg_textarea_on.jpg);
+}
+div.searchAreaWiiWare div#searchBox #textArea input#inputSearch {
+	padding-top: 12px;
+	padding-top: 13px\9; /* IE8 and below */
+	*padding-top: 13px; /* IE7 and below */
+	_padding-top: 13px; /* IE6 */
+	padding-bottom: 11px;
+	padding-bottom: 10px\9; /* IE8 and below */
+	*padding-bottom : 10px; /* IE7 and below */
+	_padding-bottom : 10px; /* IE6 */	
+}
+div.searchAreaWiiWare div#searchBox ul#searchCheck li {
+	padding:8px 10px 10px 4px;
+}
+div.searchAreaWiiWare div#searchBox ul#searchCheck li img {
+	margin:0 0 1px 2px;
+}
+div.searchAreaWiiWare div#searchBox ul#searchCheck li#btnDetail {
+    float: right;
+    padding: 6px 4px 0 0;
+}
+
+/* 3DS */
+#header #gnav .nintendo_top {
+    left: 655px;
+    top: 0px;
+	width: 305px;
+	text-align: right;
+}
+#header #gnav .nintendo_top ul li {
+	position: absolute;
+	top: 0;
+	left: 0;
+	float:left;
+	padding: 0;
+	margin: 0;
+}
+#header #gnav .nintendo_top .btn_glHdrParents img {
+	position: absolute;
+	top: 10px;
+	left: 0px;
+}
+#header #gnav .nintendo_top .btn_glHdrNintendoTop img {
+	position: absolute;
+	top: 10px;
+	left: 128px;
+}
+#header #gnav .nintendo_top .btn_glHdrSearch img {
+	position: absolute;
+	top: 4px;
+	left: 227px;
+}
+
+/* searchBox 3ds */
+div.searchArea3ds {
+	width:960px;
+	margin:0 auto 30px;
+}
+div.searchArea3ds p {
+	margin:0;
+	padding:0;
+}
+div.searchArea3ds #inputSearch.checkMsg {
+	color:#CD202C;
+}
+div.searchArea3ds img {
+	vertical-align:baseline;
+}
+div.searchArea3ds div#searchBox {
+	padding:11px 23px 24px 25px;
+	background-image:url(../3ds/img/bg_search_bottom.gif);
+	background-position:bottom left;
+}
+div.searchArea3ds div#searchBox form {
+	margin:0;
+	padding:0;
+}
+div.searchArea3ds div#searchBox .searchTtl {
+	width:210px;
+	padding:7px 0 0 0;
+	margin:0;
+	vertical-align:top;
+	text-align:left;
+}
+div.searchArea3ds div#searchBox ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+div.searchArea3ds div#searchBox ul#searchCheck {
+	margin-left: 5px;
+	width:554px;
+	float:left;
+}
+div.searchArea3ds div#searchBox ul li {
+	float:left;
+	margin:0;
+	padding:0;
+	height:39px;
+}
+div.searchArea3ds div#searchBox #textArea input {
+	background-image:url(../3ds/img/input_bg_textarea.gif);
+	background-position:left center;
+	background-repeat:no-repeat;
+	background-color:#FFF;
+	width:552px;
+	_width:567px;
+	_height:38px;	
+	margin:0px;
+	padding-left:15px;
+	border: medium none;
+    display: block;
+}
+div.searchArea3ds div#searchBox #textArea input.focus {
+	background-image:url(../3ds/img/input_bg_textarea_on.gif);
+}
+div.searchArea3ds div#searchBox #textArea input#inputSearch {
+	padding-top: 12px;
+	padding-top: 13px\9; /* IE8 and below */
+	*padding-top: 15px; /* IE7 and below */
+	_padding-top: 10px; /* IE6 */
+	padding-bottom: 12px;
+	padding-bottom: 12px\9; /* IE8 and below */
+	*padding-bottom : 14px; /* IE7 and below */
+	_padding-bottom : 10px; /* IE6 */
+}
+div.searchArea3ds div#searchBox #submit input {
+	padding-top:0px !important
+}
+div.searchArea3ds div#searchBox td.checkArea {
+	height:54px;
+}
+div.searchArea3ds div#searchBox ul#searchCheck li {
+	margin:10px 15px 0 0;
+	height:13px;
+}
+div.searchArea3ds div#searchBox ul#searchCheck li.check3dsVc {
+	margin-right:0;
+}
+div.searchArea3ds div#searchBox ul#searchCheck li img {
+	margin:0 0 2px 4px;
+}
+div.searchArea3ds div#searchBox ul#btnDetail {
+	padding:6px 0 0 0;
+	float:right;
+	width:136px;
+}
+div.searchArea3ds div#searchBox ul#btnDetail li {
+	float:none;
+}
+
+/* searchBoxSoftWare 3ds */
+div.searchArea3dsSoft {
+	margin:0 0 26px;
+}
+div.searchArea3dsSoft p {
+	margin:0;
+	padding:0;
+}
+div.searchArea3dsSoft img {
+	vertical-align:baseline;
+}
+div.searchArea3dsSoft #inputSearch.checkMsg {
+	color:#CD202C;
+}
+div.searchArea3dsSoft div#searchBox {
+	padding:14px 21px 25px 32px;
+	background-image:url(../3ds/software/img/bg_searchSoft_bottom.gif);
+	background-position:bottom left;
+}
+div.searchArea3dsSoft div#searchBox form {
+	margin:0;
+	padding:0;
+}
+div.searchArea3dsSoft div#searchBox .searchTtl {
+	margin-bottom:10px;
+}
+div.searchArea3dsSoft div#searchBox #keywordArea li {
+	float:left;
+	height:39px;
+}
+div.searchArea3dsSoft div#searchBox #textArea input {
+	background-image:url(../3ds/img/input_bg_textarea.gif);
+	background-position:left center;
+	background-repeat:no-repeat;
+	background-color:#FFF;
+	width:542px;
+	_width:557px;
+	_height:38px;	
+	margin:0px;
+	padding-left:15px;
+	border: medium none;
+    display: block;
+}
+div.searchArea3dsSoft div#searchBox #textArea input.focus {
+	background-image:url(../3ds/img/input_bg_textarea_on.gif);
+}
+div.searchArea3dsSoft div#searchBox #textArea input#inputSearch {
+	padding-top: 12px;
+	padding-top: 13px\9; /* IE8 and below */
+	*padding-top: 15px; /* IE7 and below */
+	_padding-top: 10px; /* IE6 */
+	padding-bottom: 12px;
+	padding-bottom: 12px\9; /* IE8 and below */
+	*padding-bottom : 14px; /* IE7 and below */
+	_padding-bottom : 10px; /* IE6 */
+}
+div.searchArea3dsSoft div#searchBox #searchCheck {
+	width:564px;
+	height:54px;
+}
+div.searchArea3dsSoft div#searchBox #searchCheck li {
+	margin:10px 10px 0 3px;
+	height:13px;
+	float:left;
+}
+div.searchArea3dsSoft div#searchBox #searchCheck li img {
+	margin:0 0 2px 4px;
+}
+div.searchArea3dsSoft div#searchBox td#btnDetail {
+	padding:10px 0 0 0;
+	width:134px;
+	vertical-align:top;
+}
+
+/* searchBox 3ds e-shop ダウンロードソフト */
+body.eshop .software #primary div.searchArea3dsSoft table td,
+body.eshop .vcindex #primary div.searchArea3dsSoft table td {
+    border-top:none;
+    font-size:inherit;
+    padding:0;
+    vertical-align: middle;
+}
+body.eshop .software #primary div.searchArea3dsSoft #keywordArea ul {
+    height: 39px;
+    margin-bottom:0px;
+    position:static;
+    width: 687px;
+}
+body.eshop .software #primary div.searchArea3dsSoft #searchCheck ul {
+    height:auto;
+    margin-bottom: 0px;
+    position:static;
+    width: 554px;
+}
+body.eshop .software #primary div.searchArea3dsSoft ul li {
+    position:static;
+}
+
+/* DS */
+#hdrMenu .btn_navSearch {
+	float:left;
+}
+
+/* searchBox DS index */
+div.searchAreaDs {
+	width:774px;
+	margin:0 auto 17px;
+}
+div.searchAreaDs p {
+	margin:0;
+	padding:0;
+}
+div.searchAreaDs #inputSearch.checkMsg {
+	color:#FF418C;
+}
+div.searchAreaDs div#searchBox {
+	padding:9px 18px 15px 25px;
+	background-image:url(../ds/img_cmn/bg_search_bottom.gif);
+	background-position:bottom left;
+}
+div.searchAreaDs div#searchBox form {
+	margin:0;
+	padding:0;
+}
+div.searchAreaDs div#searchBox .searchTtl {
+	width:195px;
+	padding:8px 0 0 0;
+	margin:0;
+	vertical-align:top;
+	text-align:left;
+}
+div.searchAreaDs div#searchBox ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+div.searchAreaDs div#searchBox ul#searchCheck {
+	padding:0 0 0 1px;
+}
+div.searchAreaDs div#searchBox ul li {
+	float:left;
+	margin:0;
+	padding:0;
+}
+div.searchAreaDs div#searchBox #textArea input {
+	background-image:url(../ds/img_cmn/input_bg_textarea.gif);
+	background-position:left center;
+	background-repeat:no-repeat;
+	width:398px;
+	_height:38px;
+	margin:0px;
+	padding-left:15px;
+	border: medium none;
+    display: block;
+}
+div.searchAreaDs div#searchBox #textArea input.focus {
+	background-image:url(../ds/img_cmn/input_bg_textarea_on.gif);
+}
+div.searchAreaDs div#searchBox #textArea input#inputSearch {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-bottom: 12px\9; /* IE8 and below */
+	*padding-bottom : 12px; /* IE7 and below */
+	_padding-bottom : 12px; /* IE6 */	
+}
+div.searchAreaDs div#searchBox ul#searchCheck li {
+	padding:0 14px 0 0;
+}
+div.searchAreaDs div#searchBox ul#searchCheck li img {
+	margin:0 0 1px 0;
+}
+div.searchAreaDs div#searchBox ul#searchCheck li#btnDetail {
+	padding:0 0 0 76px;
+}
+
+/* searchBox DSi index */
+div.searchAreaDsi {
+	width:768px;
+	margin:38px auto 0;
+}
+div.searchAreaDsi p {
+	margin:0;
+	padding:0;
+}
+div.searchAreaDsi #inputSearch.checkMsg {
+	color:#FF418C;
+}
+div.searchAreaDsi div#searchBox {
+	padding:10px 22px 13px 25px;
+	background-image:url(../ds/dsiware/img_cmn/bg_search_bottom.gif);
+	background-position:bottom left;
+}
+div.searchAreaDsi div#searchBox form {
+	margin:0;
+	padding:0;
+}
+div.searchAreaDsi div#searchBox .searchTtl {
+	width:195px;
+	padding:8px 0 0 0;
+	margin:0;
+	vertical-align:top;
+	text-align:left;
+}
+div.searchAreaDsi div#searchBox ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+div.searchAreaDsi div#searchBox ul#searchCheck {
+	padding:5px 0 0 1px;
+}
+div.searchAreaDsi div#searchBox ul li {
+	float:left;
+	margin:0;
+	padding:0;
+}
+div.searchAreaDsi div#searchBox #textArea input {
+	background-image:url(../ds/img_cmn/input_bg_textarea.gif);
+	background-position:left top;
+	background-repeat:no-repeat;
+	width:375px;
+	/*_height:38px;*/
+	margin:0px;
+	padding-left:15px;
+	border: medium none;
+    display: block;
+}
+div.searchAreaDsi div#searchBox #textArea input.focus {
+	background-image:url(../ds/img_cmn/input_bg_textarea_on.gif);
+}
+div.searchAreaDsi div#searchBox #submitSearch {
+	*padding-top:1px !important
+	_padding-top:1px !important
+}
+div.searchAreaDsi div#searchBox #textArea input#inputSearch {
+	padding-top: 12px;
+	padding-top: 11px\9; /* IE8 and below */
+	*padding-top: 11px; /* IE7 and below */
+	_padding-top: 10px; /* IE6 */
+	padding-bottom: 12px;
+	padding-bottom: 12px\9; /* IE8 and below */
+	*padding-bottom : 11px; /* IE7 and below */
+	_padding-bottom : 10px; /* IE6 */	
+}
+div.searchAreaDsi div#searchBox ul#searchCheck li {
+	padding:0 14px 0 0;
+}
+div.searchAreaDsi div#searchBox ul#searchCheck li img {
+	margin:0 0 2px 2px;
+}
+div.searchAreaDsi div#searchBox ul#searchCheck li#btnDetail {
+	float:right;
+	padding:0 7px 0 0;
+}

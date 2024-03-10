@@ -1,0 +1,111 @@
+body {
+	margin: 0 auto;
+	text-align: center;
+}
+
+/*-------------HEADER-------------*/
+#hdr {
+	width: 768px;
+	padding-top: 23px;
+	margin: 0 auto 0;
+}
+
+#hdr .nintendo_logo {
+	float: left;
+	margin-top: 10px;
+}
+
+#hdr .wii_logo {
+	float: right;
+}
+
+#hdrMenu {
+	padding-top: 23px;
+	clear: both;
+	width: 768px;
+	height: 32px;
+	margin: 0 auto;
+}
+
+#hdrMenu .menu01, #hdrMenu .menu02, #hdrMenu .menu03, #hdrMenu .menu04, #hdrMenu .menu05, #hdrMenu .menu06, #hdrMenu .menu07, #hdrMenu .menu08 {
+	background: url(../img_cmn/hdr_menu_line.gif) no-repeat right top;
+	float: left;
+	text-align: left;
+}
+
+#hdrMenu .menu01 {
+	background: none;
+	/*width: 330px;*/
+	width :386px;
+}
+
+
+#hdrMenu .menu02 {
+	width: 60px;
+}
+#hdrMenu .menu03 {
+	width: 39px;
+}
+#hdrMenu .menu04 {
+	width: 71px;
+}
+#hdrMenu .menu05 {
+	width: 72px;
+}
+#hdrMenu .menu06 {
+	width: 59px;
+}
+#hdrMenu .menu07 {
+	width: 56px;
+}
+
+#hdrMenu .menu08 {
+	width: 25px;
+	margin: -7px 0 0 0;
+}
+
+#hdrMenu .menuNoScriptMenu01{
+	background: none;
+	float: left;
+	text-align: left;
+	background: none;
+	width :725px;
+
+}
+#hdrMenu .menuNoScriptMenu02{
+	background: none;
+	float: left;
+	text-align: left;
+	background: none;
+	width: 41px;
+}
+
+
+.fadeline1 {
+	margin-top: 5px;
+}
+
+/*-------------FOOTER-------------*/
+
+#ftr {
+	width: 768px;
+	height: 60px;
+	padding-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: #cfcfcf 1px solid;
+}
+
+#ftr .home {
+	float: left;
+}
+
+#ftr .pagetop {
+	float: right;
+}
+
+#ftr .ftrMenu {
+	clear: both;
+	padding: 20px 0 50px;
+	letter-spacing: 1.2;
+}
